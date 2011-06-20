@@ -1,0 +1,23 @@
+<?= $this->doctype() ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?= $this->headTitle('Framework') ?> 
+        <?= $this->headScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js') ?>
+        <?= $this->headLink()->appendStylesheet('/css/style.css') ?>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    </head>
+    <body>
+        <?= $this->placeholder('body_start') ?>
+        <div id="pageWrap">
+            <? if(Zend_Auth::getInstance()->getIdentity()->getRole()->getRoleId() > 0): ?>
+                Signed in as <?= Zend_Auth::getInstance()->getIdentity()->getUsername(); ?> | <a href="<?=$this->url(array('controller'=>'auth','action'=>'logout'));?>">Sign Out</a>
+            <? else: ?>
+                <a href="<?=$this->url(array('controller'=>'auth','action'=>'login'));?>">Sign In</a> |
+                <a href="<?=$this->url(array('controller'=>'register','action'=>'index'));?>">Register</a>
+            <? endif; ?>
+            <?= $this->layout()->content; ?>
+        </div>
+        <?= $this->placeholder('body_end') ?>
+    </body>
+</html>
