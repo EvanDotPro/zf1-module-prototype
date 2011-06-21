@@ -1,5 +1,5 @@
 <?php
-namespace BaseApp\Model\Mapper;
+namespace MysqlAddon\Model\Mapper;
 abstract class DbAbstract
 {
 
@@ -49,7 +49,8 @@ abstract class DbAbstract
     {
         if (null === $writeAdapter) {
             if (null === ($writeAdapter = self::getDefaultAdapter())) {
-                throw new Exception('There was no adapter defined');
+                // @TODO: Cleaner, extended exception types
+                throw new \Exception('There was no adapter defined');
             }
         }
 
@@ -126,4 +127,5 @@ abstract class DbAbstract
     }
 
 }
+
 

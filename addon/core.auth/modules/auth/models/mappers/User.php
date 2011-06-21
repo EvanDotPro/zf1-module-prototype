@@ -1,5 +1,5 @@
 <?php
-class Auth_Model_Mapper_User extends BaseApp\Model\Mapper\DbAbstract
+class Auth_Model_Mapper_User extends \MysqlAddon\Model\Mapper\DbAbstract
 {
     protected $_name = 'user';
 

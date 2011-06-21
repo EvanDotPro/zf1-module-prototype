@@ -15,7 +15,7 @@ abstract class BootstrapAbstract
             if (file_exists($file)) {
                 require_once $file;
             } else {
-                continue;
+                return;
             }
         }
         \Zend_Registry::set($class, new $class());
