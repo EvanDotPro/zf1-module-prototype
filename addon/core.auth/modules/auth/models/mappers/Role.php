@@ -1,5 +1,5 @@
 <?php
-class Default_Model_Mapper_Role extends BaseApp\Model\Mapper\DbAbstract
+class Auth_Model_Mapper_Role extends BaseApp\Model\Mapper\DbAbstract
 {
     protected $_name = 'user_role';
 
@@ -19,6 +19,6 @@ class Default_Model_Mapper_Role extends BaseApp\Model\Mapper\DbAbstract
             ->from($this->getTableName())
             ->where('role_id = ?', $roleId);
         $row = $db->fetchRow($sql);
-        return ($row) ? new Default_Model_Role($row) : false;
+        return ($row) ? new Auth_Model_Role($row) : false;
     }
 }

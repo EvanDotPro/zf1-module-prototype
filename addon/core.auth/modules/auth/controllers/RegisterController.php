@@ -1,9 +1,9 @@
 <?php
-class Default_RegisterController extends Zend_Controller_Action
+class Auth_RegisterController extends Zend_Controller_Action
 {
     public function init()
     {
-        $this->_userService = Zend_Registry::get('Default_DiContainer')->getUserService();
+        $this->_userService = Zend_Registry::get('Auth_DiContainer')->getUserService();
         $fm = $this->getHelper('FlashMessenger')->setNamespace('registerForm')->getMessages(); 
         $this->view->registerForm = (count($fm) > 0) ? $fm[0] : $this->getRegisterForm();
     }

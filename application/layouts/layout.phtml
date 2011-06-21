@@ -11,10 +11,10 @@
         <?= $this->placeholder('body_start') ?>
         <div id="pageWrap">
             <? if(Zend_Auth::getInstance()->getIdentity()->getRole()->getRoleId() > 0): ?>
-                Signed in as <?= Zend_Auth::getInstance()->getIdentity()->getUsername(); ?> | <a href="<?=$this->url(array('controller'=>'auth','action'=>'logout'));?>">Sign Out</a>
+                Signed in as <?= Zend_Auth::getInstance()->getIdentity()->getUsername(); ?> | <a href="<?=$this->url(array('module'=>'auth', 'controller'=>'index','action'=>'logout'));?>">Sign Out</a>
             <? else: ?>
-                <a href="<?=$this->url(array('controller'=>'auth','action'=>'login'));?>">Sign In</a> |
-                <a href="<?=$this->url(array('controller'=>'register','action'=>'index'));?>">Register</a>
+                <a href="<?=$this->url(array('module'=>'auth', 'controller'=>'index','action'=>'login'));?>">Sign In</a> |
+                <a href="<?=$this->url(array('module'=>'auth', 'controller'=>'register','action'=>'index'));?>">Register</a>
             <? endif; ?>
             <?= $this->layout()->content; ?>
         </div>

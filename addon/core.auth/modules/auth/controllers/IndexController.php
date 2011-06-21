@@ -1,9 +1,9 @@
 <?php
-class Default_AuthController extends Zend_Controller_Action
+class Auth_IndexController extends Zend_Controller_Action
 {
     public function init()
     {
-        $this->_userService = Zend_Registry::get('Default_DiContainer')->getUserService();
+        $this->_userService = Zend_Registry::get('Auth_DiContainer')->getUserService();
         $fm = $this->getHelper('FlashMessenger')->setNamespace('loginForm')->getMessages(); 
         $this->view->loginForm = (count($fm) > 0) ? $fm[0] : $this->getLoginForm();
     }
@@ -11,14 +11,14 @@ class Default_AuthController extends Zend_Controller_Action
     public function loginAction()
     {
         if (Zend_Auth::getInstance()->getIdentity()->getRole()->getRoleId() > 0) {
-            return $this->_helper->redirector('index', 'index');
+            return $this->_helper->redirector('index', 'index', 'default');
         }
     }
 
     public function logoutAction()
     {
         $this->_userService->logout();
-        return $this->_helper->redirector('index','index');
+        return $this->_helper->redirector('index','index','default');
     }
 
     public function authenticateAction()
@@ -33,7 +33,7 @@ class Default_AuthController extends Zend_Controller_Action
             $this->_helper->FlashMessenger->setNamespace('loginForm')->addMessage($form);
             $this->_helper->redirector('login');
         }
-        return $this->_helper->redirector('index', 'index');
+        return $this->_helper->redirector('index', 'index', 'default');
     }
 
     public function getLoginForm()

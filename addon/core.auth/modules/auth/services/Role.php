@@ -1,10 +1,10 @@
 <?php
-class Default_Service_Role 
+class Auth_Service_Role 
 {
 
-    public function __construct(Default_Model_Mapper_Role $roleMapper = null)
+    public function __construct(Auth_Model_Mapper_Role $roleMapper = null)
     {
-        $this->_mapper = null === $roleMapper ? new Default_Model_Mapper_Role() : $roleMapper;
+        $this->_mapper = null === $roleMapper ? new Auth_Model_Mapper_Role() : $roleMapper;
     }
 
     public function getRolesForForm()

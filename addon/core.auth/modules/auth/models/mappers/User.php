@@ -1,5 +1,5 @@
 <?php
-class Default_Model_Mapper_User extends BaseApp\Model\Mapper\DbAbstract
+class Auth_Model_Mapper_User extends BaseApp\Model\Mapper\DbAbstract
 {
     protected $_name = 'user';
 
@@ -20,7 +20,7 @@ class Default_Model_Mapper_User extends BaseApp\Model\Mapper\DbAbstract
             ->from($this->getTableName(), $this->_fields)
             ->where('username = ?', $username);
         $row = $db->fetchRow($sql);
-        return ($row) ? new Default_Model_User($row) : false;
+        return ($row) ? new Auth_Model_User($row) : false;
     }
 
     public function getUserById($userId)
@@ -30,10 +30,10 @@ class Default_Model_Mapper_User extends BaseApp\Model\Mapper\DbAbstract
             ->from($this->getTableName(), $this->_fields)
                   ->where('user_id = ?', $userId);
         $row = $db->fetchRow($sql);
-        return ($row) ? new Default_Model_User($row) : false;
+        return ($row) ? new Auth_Model_User($row) : false;
     }
 
-    public function insert(Default_Model_User $user)
+    public function insert(Auth_Model_User $user)
     {
         $data = array(
             'user_id'       => $user->getUserId(),

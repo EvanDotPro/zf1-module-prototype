@@ -4,17 +4,26 @@ class BaseApp_Application_Resource_Addon
 {
     public function init()
     {
-        $bootstrap = $this->getBootstrap();
         $options = $this->getOptions();
         foreach (new DirectoryIterator($options['path']) as $file) {
-            if ($file->isDir() && $file->getFilename() != '.' && $file->getFilename() != '..') {
-                $configFile = $file->getPathName() . DS . 'config.php';
-                if (!file_exists($configFile)) continue;
-                // @TODO: Allow for various APPLICATION_ENV configs
-                $config = include_once($configFile);
-                $existingConfig = $bootstrap->getOptions();
-                $bootstrap->setOptions($bootstrap->mergeOptions($existingConfig, $config));
-            }
+            if ($file->isDot() || !$file->isDir()) continue;
+            $this->loadAddon($file->getPathname());
+        }
+    }
+
+    public function loadAddon($directory)
+    {
+        $configFile = $directory . DS . 'config.php';
+        if (!file_exists($configFile)) return;
+        $bootstrap = $this->getBootstrap();
+        // @TODO: Allow for various APPLICATION_ENV configs
+        $config = include_once($configFile);
+        $bootstrap->setOptions($bootstrap->mergeOptions($bootstrap->getOptions(), $config));
+
+        // load modules
+        $modulesDir = $directory . DS . 'modules';
+        if (is_dir($modulesDir)) {                
+            Zend_Controller_Front::getInstance()->addModuleDirectory($modulesDir);
         }
     }
 }

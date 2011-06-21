@@ -1,5 +1,5 @@
 <?php
-class Default_Model_User extends BaseApp\Model\ModelAbstract
+class Auth_Model_User extends BaseApp\Model\ModelAbstract
 {
     /**
      * User ID
@@ -25,7 +25,7 @@ class Default_Model_User extends BaseApp\Model\ModelAbstract
     /**
      * Role
      *
-     * @var Default_Model_Role
+     * @var Auth_Model_Role
      */
     protected $_role;
 
@@ -123,7 +123,7 @@ class Default_Model_User extends BaseApp\Model\ModelAbstract
     /**
      * Get role.
      *
-     * @return Default_Model_Role role
+     * @return Auth_Model_Role role
      */
     public function getRole()
     {
@@ -133,14 +133,14 @@ class Default_Model_User extends BaseApp\Model\ModelAbstract
     /**
      * Set role.
      *
-     * @param $role int|Default_Model_Role the value to be set
+     * @param $role int|Auth_Model_Role the value to be set
      */
     public function setRole($role)
     {
-        if ($role instanceof Default_Model_Role) {
+        if ($role instanceof Auth_Model_Role) {
             $this->_role = $role;
         } elseif (is_numeric($role)) {
-            $this->_role = Zend_Registry::get('Default_DiContainer')->getRoleMapper()->getRoleById((int)$role);
+            $this->_role = Zend_Registry::get('Auth_DiContainer')->getRoleMapper()->getRoleById((int)$role);
         }
         return $this;
     }

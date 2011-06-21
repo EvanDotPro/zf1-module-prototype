@@ -1,5 +1,5 @@
 <?php
-class Default_Model_Role extends BaseApp\Model\ModelAbstract
+class Auth_Model_Role extends BaseApp\Model\ModelAbstract
 {
     protected $_roleId;
 

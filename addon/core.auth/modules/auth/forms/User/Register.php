@@ -1,5 +1,5 @@
 <?php
-class Default_Form_User_Register extends Default_Form_User_Base
+class Auth_Form_User_Register extends Auth_Form_User_Base
 {
     public function init()
     {

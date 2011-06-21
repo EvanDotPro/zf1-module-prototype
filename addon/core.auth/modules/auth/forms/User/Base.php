@@ -1,5 +1,5 @@
 <?php
-class Default_Form_User_Base extends Zend_Form
+class Auth_Form_User_Base extends Zend_Form
 {
     public function init()
     {
@@ -8,7 +8,7 @@ class Default_Form_User_Base extends Zend_Form
             'validators' => array(
                 array('StringLength', true, array(3, 128)),
                 array('Db_NoRecordExists', true, array(
-                    'adapter'   => Zend_Registry::get('Default_DiContainer')
+                    'adapter'   => Zend_Registry::get('Auth_DiContainer')
                         ->getUserMapper()
                         ->getReadAdapter(),
                     'table'     => 'user',
@@ -41,7 +41,7 @@ class Default_Form_User_Base extends Zend_Form
         $this->addElement('select', 'role', array(
             'required'   => true,
             'label'      => 'Role',
-            'multiOptions'   => Zend_Registry::get('Default_DiContainer')
+            'multiOptions'   => Zend_Registry::get('Auth_DiContainer')
                         ->getRoleService()
                         ->getRolesForForm(),
             //'multiOptions' => array('Customer' => 'Customer', 'Admin' => 'Admin'),
