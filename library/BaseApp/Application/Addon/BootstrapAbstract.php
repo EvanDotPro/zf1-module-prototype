@@ -62,7 +62,6 @@ abstract class BootstrapAbstract
     {
         $r    = new \ReflectionClass($this);
         $directory  = dirname($r->getFileName());
-        var_dump($directory);
         $configFile = $directory . DS . 'config.php';
         if (!file_exists($configFile)) return;
         $config = include_once($configFile);
