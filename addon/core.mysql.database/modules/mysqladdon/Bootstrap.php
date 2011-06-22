@@ -13,4 +13,3 @@ class Mysqladdon_Bootstrap extends \BaseApp\Application\Module\BootstrapAbstract
         \MysqlAddon\Model\Mapper\DbAbstract::setDefaultAdapter($bootstrap->getResource('db'));
     }
 }
-

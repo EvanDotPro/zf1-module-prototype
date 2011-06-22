@@ -1,20 +1,18 @@
 <?php
-define('DS', DIRECTORY_SEPARATOR);
-
 // Define path to app root
 defined('ROOT_PATH')
 	|| define('ROOT_PATH',
-	        realpath(dirname(__FILE__) . DS . '..'));
+	        realpath(dirname(__FILE__) . '/..'));
 
 // Define path to application directory
 defined('APPLICATION_PATH')
 	|| define('APPLICATION_PATH',
-			realpath(ROOT_PATH . DS . 'application'));
+			realpath(ROOT_PATH . '/application'));
 
 // Define path to library directory
 defined('LIBRARY_PATH')
 	|| define('LIBRARY_PATH',
-	        realpath(ROOT_PATH . DS . 'library'));
+	        realpath(ROOT_PATH . '/library'));
 
 // Define application environment
 defined('APPLICATION_ENV')
@@ -33,7 +31,7 @@ try {
     );
     $application->bootstrap();
 } catch(Zend_Config_Exception $e){
-    die('config fail');
+    die('An error occured during bootstrapping.'); // @TODO: More verbose?
 }
 
 $application->run();

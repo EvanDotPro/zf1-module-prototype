@@ -39,7 +39,7 @@ class Auth_Model_Mapper_User extends \MysqlAddon\Model\Mapper\DbAbstract
             'user_id'       => $user->getUserId(),
             'username'      => $user->getUsername(),
             'password'      => sha1($user->getPassword().'somes@lt'),
-            'role'          => $user->getRole(),
+            'role'          => $user->getRole()->getRoleId(),
             'register_time' => new Zend_Db_Expr('NOW()'),
             'register_ip'   => new Zend_Db_Expr("INET_ATON('{$_SERVER['REMOTE_ADDR']}')"),
         );

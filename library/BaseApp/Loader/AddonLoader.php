@@ -4,36 +4,32 @@ class AddonLoader extends \Zend_Loader_PluginLoader
 {
     protected $_staticPrefix;
 
-    public function load($name, $throwExceptions = true)
+    public function load($name, $returnFalse = false)
     {
         $dirName = $name;
         $name = $this->_formatName($name);
         if ($this->isLoaded($name)) {
+            if ($returnFalse) return false;
             return $this->getClassName($name);
         }
 
-        $found     = false;
         $classFile = 'Bootstrap.php';
         $className = $name . '_Bootstrap';
 
         if (class_exists($className, false)) {
-            $found = true;
+            if ($returnFalse) return false;
             return $className;
-            break;
         }
 
         $loadFile = $this->getStaticPrefix() . '/' . $dirName . '/' . $classFile;
         if (\Zend_Loader::isReadable($loadFile)) {
             include_once $loadFile;
             if (class_exists($className, false)) {
-                $found = true;
                 return $className;
             }
         }
 
-        if (!$found) {
-            return false;
-        }
+        return false;
     }
 
     protected function _formatName($name)

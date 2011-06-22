@@ -26,7 +26,7 @@ class Auth_RegisterController extends Zend_Controller_Action
             $this->_helper->FlashMessenger->setNamespace('registerForm')->addMessage($form);
             return $this->_helper->redirector('index');
         }
-        return $this->_helper->redirector('login', 'auth');
+        return $this->_helper->redirector('login', 'index');
     }
 
     public function getRegisterForm()

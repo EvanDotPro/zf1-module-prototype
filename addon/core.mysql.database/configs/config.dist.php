@@ -1,4 +1,5 @@
 <?php
+$config['autoloadernamespaces']['MysqlAddon']       = 'MysqlAddon';
 $config['resources']['db']['adapter']               = 'PDO_MYSQL';
 $config['resources']['db']['isdefaulttableadapter'] = true;
 $config['resources']['db']['params']['host']        = 'localhost';

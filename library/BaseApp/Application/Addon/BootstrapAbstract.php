@@ -62,7 +62,7 @@ abstract class BootstrapAbstract
     {
         $r    = new \ReflectionClass($this);
         $directory  = dirname($r->getFileName());
-        $configFile = $directory . DS . 'config.php';
+        $configFile = $directory . '/config.php';
         if (!file_exists($configFile)) return;
         $config = include_once($configFile);
         if (is_array($config)) {
@@ -75,12 +75,12 @@ abstract class BootstrapAbstract
         }
 
         // load modules
-        $modulesDir = $directory . DS . 'modules';
+        $modulesDir = $directory . '/modules';
         if (is_dir($modulesDir)) {                
             \Zend_Controller_Front::getInstance()->addModuleDirectory($modulesDir);
         }
 
-        $libraryDir = $directory . DS . 'library';
+        $libraryDir = $directory . '/library';
         if (is_dir($libraryDir)) {                
             set_include_path(implode(PATH_SEPARATOR, array(get_include_path(), $libraryDir)));
         }
