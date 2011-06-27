@@ -11,10 +11,11 @@ class Auth_Form_User_Base extends Zend_Form
                     'adapter'   => Zend_Registry::get('Auth_DiContainer')
                         ->getUserMapper()
                         ->getReadAdapter(),
-                    'table'     => 'user',
+                    'table'     => Zend_Registry::get('Auth_DiContainer')
+                        ->getUserMapper()
+                        ->getTableName(),
                     'field'     => 'username'
                 ))
-
             ),
             'required'   => true,
             'label'      => 'Username'

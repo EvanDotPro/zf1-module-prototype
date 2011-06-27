@@ -62,12 +62,12 @@ abstract class BootstrapAbstract
     {
         $r    = new \ReflectionClass($this);
         $directory  = dirname($r->getFileName());
-        $configFile = $directory . '/config.php';
+        $configFile = $directory . '/configs/config.php';
         if (!file_exists($configFile)) return;
         $config = include_once($configFile);
         if (is_array($config)) {
-            $bootstrap = $this->getApplication();
             // @TODO: Allow for various APPLICATION_ENV configs
+            $bootstrap = $this->getApplication();
             $bootstrap->setOptions($bootstrap->mergeOptions($bootstrap->getOptions(), $config));
             // This is for autoloadernamespaces / etc
             $application = $bootstrap->getApplication();
